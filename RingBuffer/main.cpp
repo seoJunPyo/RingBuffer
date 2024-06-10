@@ -10,30 +10,45 @@ char peak_buffer[100];
 
 int main()
 {
-	RingBuffer ring_buffer{ 100 };
+	RingBuffer ring_buffer{ 10 };
 
-	ring_buffer.Enqueue("AAAAAAAAAAAAAAAAAAAAAAA", sizeof("AAAAAAAAAAAAAAAAAAAAAAA"));
-	ring_buffer.Enqueue("AAAAAAAAAAAAAAAAAAAAAAA", sizeof("AAAAAAAAAAAAAAAAAAAAAAA"));
-	ring_buffer.Enqueue("AAAAAAAAAAAAAAAAAAAAAAA", sizeof("AAAAAAAAAAAAAAAAAAAAAAA"));
-	ring_buffer.Enqueue("AAAAAAAAAAAAAAAAAAAAAAA", sizeof("AAAAAAAAAAAAAAAAAAAAAAA"));
+
+	ring_buffer.MoveRear(5);
 	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
 	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
 	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';
 
-	char buffer[1000];	
-
-	ring_buffer.Dequeue(buffer, 30);
+	ring_buffer.MoveRear(5);
 	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
 	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
 	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';
-
-	ring_buffer.Enqueue("AAAAAAAAAAAAAAAAAAAAAAA", sizeof("AAAAAAAAAAAAAAAAAAAAAAA"));
+	
+	ring_buffer.MoveFront(5);
 	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
 	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
 	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';
-
-
-	ring_buffer.MoveFront(10);
+	
+	ring_buffer.MoveRear(5);
+	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
+	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
+	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';
+	
+	ring_buffer.MoveFront(5);
+	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
+	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
+	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';
+	
+	ring_buffer.MoveFront(5);
+	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
+	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
+	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';
+	
+	ring_buffer.MoveRear(6);
+	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
+	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
+	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';
+	
+	ring_buffer.MoveRear(1);
 	cout << "front : " << ring_buffer.GetFront() << ", rear : " << ring_buffer.GetRear() << '\n';
 	cout << "free size : " << ring_buffer.GetFreeSize() << ", use size : " << ring_buffer.GetUseSize() << '\n';
 	cout << "DirectDequeueSize : " << ring_buffer.DirectDequeueSize() << ", DirectEnqueueSize : " << ring_buffer.DirectEnqueueSize() << '\n' << '\n';

@@ -98,24 +98,18 @@ void RingBuffer::ClearBuffer()
 
 int RingBuffer::DirectEnqueueSize() const
 {
-    int diff = _size - _rear;
-    int free_size = GetFreeSize();
-
-    if (free_size >= diff)
-        return diff;
+    if (_rear >= _front)
+        return _size - _rear + 1;
     else
-        return free_size;
+        return _front - _rear - 1;
 }
 
 int RingBuffer::DirectDequeueSize() const
 {
-    int diff = _size - _front;
-    int use_size = GetUseSize();
-
-    if (use_size >= diff)
-        return diff;
+    if (_front <= _rear)
+        return _rear - _front;
     else
-        return use_size;
+        return _size - _front + 1;
 }
 
 int RingBuffer::MoveRear(int move_size)
@@ -126,7 +120,7 @@ int RingBuffer::MoveRear(int move_size)
         move_size = free_size;
 
     _rear += move_size;
-    if (_rear >= _size)
+    if (_rear > _size)
         _rear -= (_size + 1);
 
     return move_size;
